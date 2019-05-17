@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="exchangeRateApp.View.mainPage"
+             xmlns:viewmodels ="clr-namespace:exchangeRateApp.ViewModel"
+             BindingContext="{viewmodels:mainViewModel}">
+    <ContentPage.Content>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Text="Exchange Rate App" Grid.Column="0"/>
+
+            <Picker x:Name="picker"
+            Title="Select a monkey"
+            TitleColor="Red">
+            <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                    </x:Array>
+            </Picker.ItemsSource>
+            </Picker>
+
+            <ListView HasUnevenRows="True" x:Name="usersListView" CachingStrategy="RecycleElement" ItemsSource="{Binding ViewPoints}">
+
+
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
