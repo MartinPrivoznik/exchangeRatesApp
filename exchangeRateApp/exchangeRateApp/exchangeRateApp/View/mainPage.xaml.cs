@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace exchangeRateApp.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+  //  [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class mainPage : ContentPage
     {
         public mainPage()

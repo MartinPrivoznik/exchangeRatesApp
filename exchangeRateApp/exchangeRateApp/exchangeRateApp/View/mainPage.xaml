@@ -6,26 +6,14 @@
              BindingContext="{viewmodels:mainViewModel}">
     <ContentPage.Content>
         <Grid Padding="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            
-            <Label Text="Exchange Rate App" Grid.Column="0"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <Picker x:Name="picker"
-            Title="Select a monkey"
-            TitleColor="Red">
-            <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                    </x:Array>
-            </Picker.ItemsSource>
-            </Picker>
+            <Label Text="Exchange Rate App" Grid.Row="0"/>
 
-            <ListView HasUnevenRows="True" x:Name="usersListView" CachingStrategy="RecycleElement" ItemsSource="{Binding ViewPoints}">
-
-
-            </ListView>
         </Grid>
+
     </ContentPage.Content>
 </ContentPage>
