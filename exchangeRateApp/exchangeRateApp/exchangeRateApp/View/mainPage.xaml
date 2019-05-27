@@ -1,24 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="exchangeRateApp.View.mainPage"
-             xmlns:viewmodels ="clr-namespace:exchangeRateApp.ViewModel"
-             BindingContext="{viewmodels:mainViewModel}">
-    <ContentPage.Content>
-        <Grid Padding="10">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+             xmlns:Views="clr-namespace:exchangeRateApp.View"
+            xmlns:ffimageloading="clr-namespace:FFImageLoading;assembly=FFImageLoading.Platform"
+            xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+            xmlns:ff="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+            xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+            
+             >
+    <TabbedPage.Resources>
+        <ff:SvgCachedImage Source="baseline_settings.svg" x:Key="settings"/>
+        <ff:SvgImageSourceConverter x:Key="svgconverter"></ff:SvgImageSourceConverter>
+        <Image Source="{StaticResource settings}" x:Key="obraz"/>
 
-            <Label Text="Exchange Rate App" Grid.Row="0"/>
-            <Picker 
-            Title="Select a currency"
-            ItemsSource="{Binding ChangeTypes}"
-            ItemDisplayBinding="{Binding Name}"
-            Grid.Row="0"/>
+    </TabbedPage.Resources>
 
-        </Grid>
+    <ContentPage Title="VALUES" Icon="">
 
-    </ContentPage.Content>
-</ContentPage>
+        <ContentPage.Content>
+            <StackLayout>
+                <Label Text="kek"></Label>
+                <ff:SvgCachedImage Source="baseline_settings.svg" HeightRequest="50" WidthRequest="50" Opacity="50"/>
+                <Image Source="{StaticResource obraz}"></Image>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="CALC" Icon="baseline_dialpad_black_18dp.png"/>
+    <ContentPage Title="CHARTS" Icon="baseline_timeline_black_18dp.png"/>
+    <ContentPage Title="SETTINGS" Icon="baseline_settings_black_18dp.png"/>
+    
+</TabbedPage>

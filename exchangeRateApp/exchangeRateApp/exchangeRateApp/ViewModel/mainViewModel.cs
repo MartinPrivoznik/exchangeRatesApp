@@ -13,7 +13,7 @@ namespace exchangeRateApp.ViewModel
 
         public mainViewModel()
         {
-            data = new Data();
+            //data = new Data();
             time = new DateTime();
             time = data.JavaTimeStampToDateTime();
         }
