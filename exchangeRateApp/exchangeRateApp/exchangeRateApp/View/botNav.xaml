@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="exchangeRateApp.View.botNav">
+    <ContentPage Title="Static values" IconImageSource=""/>
+    <NavigationPage Title="Static values" Icon="baseline_list_black_18dp.png"/>
+    <NavigationPage Title="Calculator" Icon="baseline_dialpad_black_18dp.png"/>
+    <NavigationPage Title="Charts" Icon="baseline_timeline_black_18dp.png"/>
+    <NavigationPage Title="Settings" Icon="baseline_settings_black_18dp.png"/>
+</TabbedPage>

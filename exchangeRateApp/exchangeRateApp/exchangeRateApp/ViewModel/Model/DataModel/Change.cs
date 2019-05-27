@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace exchangeRateApp.ViewModel.Model
+namespace exchangeRateApp.ViewModel.Model.DataModel
 {
     class Change
     {

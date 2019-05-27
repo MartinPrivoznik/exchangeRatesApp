@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace exchangeRateApp.ViewModel
 {
+    using exchangeRateApp.ViewModel.Model.DataModel;
     using Model;
     class mainViewModel : Abstract.viewModel
     {
@@ -15,20 +16,17 @@ namespace exchangeRateApp.ViewModel
             data = new Data();
             time = new DateTime();
             time = data.JavaTimeStampToDateTime();
-            list = new List<Change>();
-            data.getRateValuesAsync();
-            data.getChangesAsync();
         }
 
         public List<Change> ChangeTypesBind
         {
             get
             {
-                return list;
+                return data.Changes;
             }
             set
             {
-                list = value;
+                data.Changes = value;
                 OnPropertyChanged("ChangeTypesBind");
             }
         }

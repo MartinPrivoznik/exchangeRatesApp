@@ -12,6 +12,11 @@
             </Grid.RowDefinitions>
 
             <Label Text="Exchange Rate App" Grid.Row="0"/>
+            <Picker 
+            Title="Select a currency"
+            ItemsSource="{Binding ChangeTypes}"
+            ItemDisplayBinding="{Binding Name}"
+            Grid.Row="0"/>
 
         </Grid>
 

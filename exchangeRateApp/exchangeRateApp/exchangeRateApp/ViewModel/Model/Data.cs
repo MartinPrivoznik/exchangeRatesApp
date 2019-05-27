@@ -15,7 +15,7 @@ namespace exchangeRateApp.ViewModel.Model
         private Dictionary<string, double> convertedData;
         private List<Change> changes;
 
-        public async void getRateValuesAsync()
+        public async Task<Dictionary<string, double>> getRateValuesAsync()
         {
             //Add rates to Dictionary
             
@@ -23,10 +23,11 @@ namespace exchangeRateApp.ViewModel.Model
             {
                 convertedData = items.quotes;
             });
-            
+
+            return convertedData;
         }
 
-        public async void getChangesAsync()
+        public async Task<List<Change>> getChangesAsync()
         {
             await new Task(() =>
             {
@@ -35,6 +36,7 @@ namespace exchangeRateApp.ViewModel.Model
                     changes.Add(new Change(item.Key.Substring(3, 5)));
                 }
             });
+            return changes;
         }   
 
 
@@ -45,14 +47,22 @@ namespace exchangeRateApp.ViewModel.Model
             items = JsonConvert.DeserializeObject<ExchangeRateInfo>(json);
             changes = new List<Change>();
             convertedData = new Dictionary<string, double>();
+            getChangesAsync().Wait();
+            getRateValuesAsync().Wait();
         }
 
         public DateTime JavaTimeStampToDateTime()
         {
-            // Java timestamp is milliseconds past epoch
+            // Java timestamp is seconds past epoch
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
             dtDateTime = dtDateTime.AddSeconds(items.timestamp).ToLocalTime();
             return dtDateTime;
         }        
+
+        public List<Change> Changes
+        {
+            get { return changes; }
+            set { changes = value;  }
+        }
     }
 }
