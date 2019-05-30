@@ -25,7 +25,6 @@ namespace exchangeRateApp.View
         public mainPage ()
         {
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
         }
     }
 }
