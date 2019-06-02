@@ -1,4 +1,5 @@
 ﻿using exchangeRateApp.View;
+using exchangeRateApp.ViewModel.Model;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,12 +14,16 @@ namespace exchangeRateApp
         {
             InitializeComponent();
 
-            MainPage = new mainPage();
+            MainPage = new LoadingPage();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
-            // Handle when your app starts
+            var data = Data.Instance;
+            await data.InitializeAsync();
+            
+            MainPage = new mainPage(); 
+            
         }
 
         protected override void OnSleep()

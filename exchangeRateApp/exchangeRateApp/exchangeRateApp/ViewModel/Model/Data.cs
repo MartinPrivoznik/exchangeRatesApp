@@ -10,46 +10,50 @@ namespace exchangeRateApp.ViewModel.Model
 
     class Data
     {
-        private string json;
-        private ExchangeRateInfo items;
-        private Dictionary<string, double> convertedData;
-        private List<Change> changes;
+        public static Data Instance = new Data();
 
-        public async Task<Dictionary<string, double>> getRateValuesAsync()
-        {
-            //Add rates to Dictionary
-            
-            await new Task(() =>
-            {
-                convertedData = items.quotes;
-            });
-
-            return convertedData;
-        }
-
-        public async Task<List<Change>> getChangesAsync()
-        {
-            await new Task(() =>
-            {
-                foreach (KeyValuePair<string, double> item in convertedData)
-                {
-                    changes.Add(new Change(item.Key.Substring(3, 5)));
-                }
-            });
-            return changes;
-        }   
-
-
-        //Konstruktor
-        public Data()
+        public async Task InitializeAsync()
         {
             json = new WebClient().DownloadString("http://www.apilayer.net/api/live?access_key=eed50627c9da077136be224e011a7f95&format=1");
             items = JsonConvert.DeserializeObject<ExchangeRateInfo>(json);
             changes = new List<Change>();
             convertedData = new Dictionary<string, double>();
-            getChangesAsync().Wait();
-            getRateValuesAsync().Wait();
+            convertedData = await getRateValuesAsync();
+            changes = await getChangesAsync();
         }
+
+        private string json;
+        private ExchangeRateInfo items;
+        private Dictionary<string, double> convertedData;
+        private List<Change> changes;
+
+        private Task<Dictionary<string, double>> getRateValuesAsync()
+        {
+            return Task.Run(() =>
+            {
+                Dictionary<string,double> convertedDataa = new Dictionary<string, double>();
+                convertedDataa = items.quotes;
+                return convertedDataa;
+            });
+        }
+
+        private Task<List<Change>> getChangesAsync()
+        {
+            return Task.Run(() => 
+            {
+                List<Change> changess = new List<Change>();
+            foreach (KeyValuePair<string, double> item in convertedData)
+            {
+                changess.Add(new Change(item.Key.Substring(3,3), item.Value));
+                }
+                System.Threading.Thread.Sleep(4000);
+                return changess;
+            });
+        }
+
+
+        //Konstruktor            
+        
 
         public DateTime JavaTimeStampToDateTime()
         {
@@ -63,6 +67,11 @@ namespace exchangeRateApp.ViewModel.Model
         {
             get { return changes; }
             set { changes = value;  }
+        }
+
+        public Change defaultChange
+        {
+            get { return Changes[0]; }
         }
     }
 }
