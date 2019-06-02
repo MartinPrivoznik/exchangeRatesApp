@@ -2,23 +2,26 @@
 using exchangeRateApp.ViewModel.Model.DataModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace exchangeRateApp.ViewModel
 {
     class StaticValuesPageViewModel : Abstract.viewModel
     {
-        protected Change selected;
         public StaticValuesPageViewModel()
         {
-            selected = Data.Instance.defaultChange;
         }
-
 
         public Change Selected
         {
-            get { return selected; }
-            set { selected = value; OnPropertyChanged("Selected"); }
+            get { return Data.Instance.Selected; }
+            set { Data.Instance.Selected = value;
+                OnPropertyChanged("Selected");
+                OnPropertyChanged("ChangeList1");
+                OnPropertyChanged("ChangeList2");
+            }
         }
 
         public List<Change> ChangeList
@@ -41,7 +44,7 @@ namespace exchangeRateApp.ViewModel
                 }
                 return temp;
             }
-            set { Data.Instance.Changes = value; OnPropertyChanged("ChangeList"); }
+            set { Data.Instance.Changes = value; OnPropertyChanged("ChangeList1"); }
         }
 
         public List<Change> ChangeList2
@@ -55,7 +58,7 @@ namespace exchangeRateApp.ViewModel
                 }
                 return temp;
             }
-            set { Data.Instance.Changes = value; OnPropertyChanged("ChangeList"); }
+            set { Data.Instance.Changes = value; OnPropertyChanged("ChangeList2"); }
         }
     }
 }

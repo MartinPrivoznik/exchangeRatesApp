@@ -20,12 +20,17 @@ namespace exchangeRateApp.ViewModel.Model
             convertedData = new Dictionary<string, double>();
             convertedData = await getRateValuesAsync();
             changes = await getChangesAsync();
-        }
+            selected = defaultChange;
+            selected2 = defaultChange;
+    }
 
         private string json;
         private ExchangeRateInfo items;
         private Dictionary<string, double> convertedData;
         private List<Change> changes;
+        protected Change selected;
+        protected Change selected2;
+        protected double enteredValue;
 
         private Task<Dictionary<string, double>> getRateValuesAsync()
         {
@@ -72,6 +77,24 @@ namespace exchangeRateApp.ViewModel.Model
         public Change defaultChange
         {
             get { return Changes[0]; }
+        }
+
+        public Change Selected
+        {
+            get { return selected; }
+            set { selected = value; }
+        }
+
+        public Change Selected2
+        {
+            get { return selected2; }
+            set { selected2 = value; }
+        }
+
+        public double EnteredValue
+        {
+            get { return enteredValue; }
+            set { enteredValue = value; }
         }
     }
 }
