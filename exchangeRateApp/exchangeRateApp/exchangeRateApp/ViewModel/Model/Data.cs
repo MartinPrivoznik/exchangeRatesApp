@@ -5,7 +5,9 @@ namespace exchangeRateApp.ViewModel.Model
 {
     using DataModel;
     using Newtonsoft.Json;
+    using System.IO;
     using System.Net;
+    using System.Reflection;
     using System.Threading.Tasks;
 
     class Data
@@ -22,7 +24,9 @@ namespace exchangeRateApp.ViewModel.Model
             changes = await getChangesAsync();
             selected = defaultChange;
             selected2 = defaultChange;
-    }
+            //path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "temp.txt");
+            //read = File.ReadAllText(path);
+        }
 
         private string json;
         private ExchangeRateInfo items;
@@ -31,6 +35,8 @@ namespace exchangeRateApp.ViewModel.Model
         protected Change selected;
         protected Change selected2;
         protected double enteredValue;
+        //protected string path;
+        //protected string read;
 
         private Task<Dictionary<string, double>> getRateValuesAsync()
         {
@@ -51,7 +57,7 @@ namespace exchangeRateApp.ViewModel.Model
             {
                 changess.Add(new Change(item.Key.Substring(3,3), item.Value));
                 }
-                System.Threading.Thread.Sleep(4000);
+                System.Threading.Thread.Sleep(3000);
                 return changess;
             });
         }
@@ -96,5 +102,10 @@ namespace exchangeRateApp.ViewModel.Model
             get { return enteredValue; }
             set { enteredValue = value; }
         }
+        //public string Folder
+        //{
+        //    get { return read; }
+        //    set { read = value; }
+        //}
     }
 }

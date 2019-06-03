@@ -87,5 +87,11 @@ namespace exchangeRateApp.ViewModel
                 OnPropertyChanged("FinalValue");
             }
         }
+
+        //public string Text
+        //{
+        //    get { return Data.Instance.Folder; }
+        //    set { Data.Instance.Folder = value; OnPropertyChanged("Text"); }
+        //}
     }
 }

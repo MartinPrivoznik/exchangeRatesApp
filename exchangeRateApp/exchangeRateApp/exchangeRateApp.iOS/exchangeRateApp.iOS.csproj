@@ -196,4 +196,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\baseline_settings.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\temp.txt" />
+  </ItemGroup>
 </Project>
