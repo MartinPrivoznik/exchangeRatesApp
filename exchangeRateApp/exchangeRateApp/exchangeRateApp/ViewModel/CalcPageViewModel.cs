@@ -93,6 +93,11 @@ namespace exchangeRateApp.ViewModel
             }
         }
 
+        public string Color
+        {
+            get { return Data.Instance.DefaultColor; }
+        }
+
         //public string Text
         //{
         //    get { return Data.Instance.Folder; }

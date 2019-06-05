@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="exchangeRateApp.View.mainPage"
              xmlns:Views="clr-namespace:exchangeRateApp.View"
-            xmlns:ff="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-            xmlns:svg="clr-namespace:Xamarin.Forms.Svg;assembly=SvgImageSource"
-             > 
+            xmlns:viewmodels="clr-namespace:exchangeRateApp.ViewModel"
+            BindingContext="{viewmodels:CalcPageViewModel}"
+            BarBackgroundColor="{Binding Color}" > 
 
     <Views:StaticValuesPage/>
     <Views:CalcPage/>

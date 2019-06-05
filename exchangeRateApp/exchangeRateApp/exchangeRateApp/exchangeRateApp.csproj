@@ -14,13 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="temp.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="LiveXAML" Version="2.1.72" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Nito.AsyncEx" Version="5.0.0" />
+    <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />

@@ -15,6 +15,11 @@ namespace exchangeRateApp.ViewModel
             Selected = Data.Instance.defaultChange;
         }
 
+        public string LastChanged
+        {
+            get { return Data.Instance.JavaTimeStampToDateTime().ToString(); }
+        }
+
         public Change Selected
         {
             get { return Data.Instance.Selected; }

@@ -16,5 +16,5 @@ namespace exchangeRateApp.View
 		{
 			InitializeComponent ();
 		}
-	}
+    }
 }

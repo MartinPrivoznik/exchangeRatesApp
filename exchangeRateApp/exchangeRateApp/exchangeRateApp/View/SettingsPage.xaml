@@ -5,11 +5,20 @@
              Title="SETTINGS" Icon="baseline_settings_black_18dp.png"
              xmlns:viewmodels="clr-namespace:exchangeRateApp.ViewModel"
              BindingContext="{viewmodels:SettingsPageViewModel}">
+    <ContentPage.Resources>
+        <x:Array Type="{x:Type x:String}" x:Key="Colors">
+            <x:String>Blue</x:String>
+            <x:String>Green</x:String>
+            <x:String>Red</x:String>
+            <x:String>Purple</x:String>
+            <x:String>Pink</x:String>
+            <x:String>Yellow</x:String>
+        </x:Array>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Settings"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="10,10,10,10">
+            <Label Text="Default color: "/>
+            <Picker ItemsSource="{StaticResource Colors}" SelectedItem="{Binding SelectedColor, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

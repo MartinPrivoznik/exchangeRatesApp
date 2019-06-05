@@ -26,6 +26,8 @@ namespace exchangeRateApp.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLStorage.Resource.String.ApplicationName = global::exchangeRateApp.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::exchangeRateApp.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Svg.Droid.Resource.Animation.abc_fade_in = global::exchangeRateApp.Droid.Resource.Animation.abc_fade_in;
 			global::Xamarin.Forms.Svg.Droid.Resource.Animation.abc_fade_out = global::exchangeRateApp.Droid.Resource.Animation.abc_fade_out;
 			global::Xamarin.Forms.Svg.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::exchangeRateApp.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -8118,6 +8120,12 @@ namespace exchangeRateApp.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f0a003e
+			public const int ApplicationName = 2131361854;
+			
+			// aapt resource value: 0x7f0a003d
+			public const int Hello = 2131361853;
 			
 			// aapt resource value: 0x7f0a0015
 			public const int abc_action_bar_home_description = 2131361813;

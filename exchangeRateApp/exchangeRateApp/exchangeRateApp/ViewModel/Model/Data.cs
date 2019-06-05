@@ -5,6 +5,7 @@ namespace exchangeRateApp.ViewModel.Model
 {
     using DataModel;
     using Newtonsoft.Json;
+    using PCLStorage;
     using System.IO;
     using System.Net;
     using System.Reflection;
@@ -16,16 +17,16 @@ namespace exchangeRateApp.ViewModel.Model
 
         public async Task InitializeAsync()
         {
-            json = new WebClient().DownloadString("http://www.apilayer.net/api/live?access_key=eed50627c9da077136be224e011a7f95&format=1");
-            items = JsonConvert.DeserializeObject<ExchangeRateInfo>(json);
+            json = new WebClient().DownloadString("http://www.apilayer.net/api/live?access_key=eed50627c9da077136be224e011a7f95&format=1"); //Loading API
+            items = JsonConvert.DeserializeObject<ExchangeRateInfo>(json); //Deserializing API
             changes = new List<Change>();
             convertedData = new Dictionary<string, double>();
             convertedData = await getRateValuesAsync();
             changes = await getChangesAsync();
+            await PCLStorage();  //Loading Local Storage
+            await getDefaultChangeAsync();
             selected = defaultChange;
             selected2 = defaultChange;
-            //path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "temp.txt");
-            //read = File.ReadAllText(path);
         }
 
         private string json;
@@ -35,8 +36,33 @@ namespace exchangeRateApp.ViewModel.Model
         protected Change selected;
         protected Change selected2;
         protected double enteredValue;
-        //protected string path;
-        //protected string read;
+        protected IFolder localFolder;
+        protected IFile settingsFile;
+        protected IFile defaultColorFile;
+        protected string settings;
+        protected string defaultColor;
+        protected Change defaultchange;
+
+        public async Task PCLStorage()
+        {
+            localFolder = FileSystem.Current.LocalStorage;
+            settingsFile = await localFolder.CreateFileAsync("settings.txt",
+                CreationCollisionOption.OpenIfExists);
+            defaultColorFile = await localFolder.CreateFileAsync("defaultColor.txt",
+                CreationCollisionOption.OpenIfExists);
+
+            settings = await settingsFile.ReadAllTextAsync();
+            if (settings == "")
+            {
+                settings = "AUD";
+            }
+
+            defaultColor = await defaultColorFile.ReadAllTextAsync();
+            if (defaultColor == "")
+            {
+                defaultColor = "#14b0ff";
+            }
+        }
 
         private Task<Dictionary<string, double>> getRateValuesAsync()
         {
@@ -62,17 +88,41 @@ namespace exchangeRateApp.ViewModel.Model
             });
         }
 
-
-        //Konstruktor            
-        
+        private Task getDefaultChangeAsync()
+        {
+            return Task.Run(() =>
+            {
+                foreach (Change item in changes)
+                {
+                    if (item.Name == settings)
+                    {
+                        defaultchange = item;
+                    }
+                }
+            });
+        }
 
         public DateTime JavaTimeStampToDateTime()
         {
             // Java timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
             dtDateTime = dtDateTime.AddSeconds(items.timestamp).ToLocalTime();
             return dtDateTime;
         }        
+
+
+        public async void ChangeSettings(string change)
+        {
+            await settingsFile.WriteAllTextAsync(change);
+            settings = change;
+            await getDefaultChangeAsync();
+        }
+
+        public async void ChangeDefaultColor(string color)
+        {
+            await defaultColorFile.WriteAllTextAsync(color);
+            defaultColor = color;
+        }
 
         public List<Change> Changes
         {
@@ -82,7 +132,8 @@ namespace exchangeRateApp.ViewModel.Model
 
         public Change defaultChange
         {
-            get { return Changes[0]; }
+            get { return defaultchange; }
+            set { defaultchange = value; }
         }
 
         public Change Selected
@@ -102,10 +153,19 @@ namespace exchangeRateApp.ViewModel.Model
             get { return enteredValue; }
             set { enteredValue = value; }
         }
-        //public string Folder
-        //{
-        //    get { return read; }
-        //    set { read = value; }
-        //}
+
+        public string Settings
+        {
+            get { return settings; }
+            set { settings = value; }
+        }
+
+        public string DefaultColor
+        {
+            get { return defaultColor; }
+            set { defaultColor = value; }
+        }
+        
+
     }
 }
