@@ -11,11 +11,16 @@ namespace exchangeRateApp.ViewModel
     class CalcPageViewModel : Abstract.viewModel
     {
         protected string finalValue;
+        protected Change selected1;
+        protected Change selected2;
+
         public Command Calculate { get; private set; }
 
         public CalcPageViewModel()
         {
             Calculate = new Command(Calculate_executeAsync);
+            selected1 = Data.Instance.defaultChange;
+            selected2 = Data.Instance.defaultChange;
         }
 
         private async void Calculate_executeAsync(object obj)
@@ -68,10 +73,10 @@ namespace exchangeRateApp.ViewModel
 
         public Change Selected1
         {
-            get { return Data.Instance.Selected; }
+            get { return selected1; }
             set
             {
-                Data.Instance.Selected = value;
+                selected1 = value;
                 OnPropertyChanged("Selected1");
                 OnPropertyChanged("FinalValue");
             }
@@ -79,10 +84,10 @@ namespace exchangeRateApp.ViewModel
 
         public Change Selected2
         {
-            get { return Data.Instance.Selected2; }
+            get { return selected2; }
             set
             {
-                Data.Instance.Selected2 = value;
+                selected2 = value;
                 OnPropertyChanged("Selected2");
                 OnPropertyChanged("FinalValue");
             }

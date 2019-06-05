@@ -12,6 +12,7 @@ namespace exchangeRateApp.ViewModel
     {
         public StaticValuesPageViewModel()
         {
+            Selected = Data.Instance.defaultChange;
         }
 
         public Change Selected
