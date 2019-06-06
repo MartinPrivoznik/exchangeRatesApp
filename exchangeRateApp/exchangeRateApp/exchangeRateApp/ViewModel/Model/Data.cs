@@ -25,6 +25,7 @@ namespace exchangeRateApp.ViewModel.Model
             changes = await getChangesAsync();
             await PCLStorage();  //Loading Local Storage
             await getDefaultChangeAsync();
+            lastUpdated = await getLastUpdatedAsync();
             selected = defaultChange;
             selected2 = defaultChange;
         }
@@ -42,6 +43,7 @@ namespace exchangeRateApp.ViewModel.Model
         protected string settings;
         protected string defaultColor;
         protected Change defaultchange;
+        protected DateTime lastUpdated;
 
         public async Task PCLStorage()
         {
@@ -62,6 +64,19 @@ namespace exchangeRateApp.ViewModel.Model
             {
                 defaultColor = "#14b0ff";
             }
+        }
+
+        private Task<DateTime> getLastUpdatedAsync()
+        {
+            return Task.Run(() =>
+            {
+                // Java timestamp is seconds past epoch
+                DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                dtDateTime = dtDateTime.AddSeconds(items.timestamp).ToLocalTime();
+                LastUpdated = dtDateTime;
+                return dtDateTime;
+            });
+            
         }
 
         private Task<Dictionary<string, double>> getRateValuesAsync()
@@ -100,28 +115,24 @@ namespace exchangeRateApp.ViewModel.Model
                     }
                 }
             });
-        }
-
-        public DateTime JavaTimeStampToDateTime()
-        {
-            // Java timestamp is seconds past epoch
-            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddSeconds(items.timestamp).ToLocalTime();
-            return dtDateTime;
-        }        
-
+        } 
 
         public async void ChangeSettings(string change)
         {
             await settingsFile.WriteAllTextAsync(change);
             settings = change;
-            await getDefaultChangeAsync();
         }
 
         public async void ChangeDefaultColor(string color)
         {
             await defaultColorFile.WriteAllTextAsync(color);
             defaultColor = color;
+        }
+
+        public DateTime LastUpdated
+        {
+            get { return lastUpdated; }
+            set { lastUpdated = value; }
         }
 
         public List<Change> Changes

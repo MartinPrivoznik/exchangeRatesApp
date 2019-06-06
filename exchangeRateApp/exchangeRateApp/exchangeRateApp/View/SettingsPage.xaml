@@ -17,8 +17,23 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Margin="10,10,10,10">
-            <Label Text="Default color: "/>
-            <Picker ItemsSource="{StaticResource Colors}" SelectedItem="{Binding SelectedColor, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Spacing="20" Grid.Column="0">
+                    <StackLayout>
+                        <Label Text="Default color: "/>
+                        <Picker ItemsSource="{StaticResource Colors}" SelectedItem="{Binding SelectedColor, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Default change: "/>
+                        <Picker ItemsSource="{Binding ChangeList}" SelectedItem="{Binding SelectedChange, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}" ItemDisplayBinding="{Binding Name}"/>
+                    </StackLayout>
+                    <Label Text="Changes will apply after RESET" IsVisible="{Binding DataChanged}"/>
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

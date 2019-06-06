@@ -10,14 +10,17 @@ namespace exchangeRateApp.ViewModel
 {
     class StaticValuesPageViewModel : Abstract.viewModel
     {
+        protected string lastChanged;
         public StaticValuesPageViewModel()
         {
             Selected = Data.Instance.defaultChange;
+            LastChanged = Data.Instance.LastUpdated.ToString();
         }
 
         public string LastChanged
         {
-            get { return Data.Instance.JavaTimeStampToDateTime().ToString(); }
+            get { return "Last updated : " + Data.Instance.LastUpdated.ToString(); }
+            set { lastChanged = value; OnPropertyChanged("LastChanged"); }
         }
 
         public Change Selected

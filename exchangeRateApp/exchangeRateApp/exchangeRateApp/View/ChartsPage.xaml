@@ -6,9 +6,8 @@
              xmlns:viewmodels="clr-namespace:exchangeRateApp.ViewModel"
              BindingContext="{viewmodels:ChartsPageViewModel}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Currency:" />
-            <Picker ItemsSource="{Binding ChangeList}" SelectedItem="{Binding Selected}" ItemDisplayBinding="{Binding Name}"/>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="DLC for 4.99$"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
