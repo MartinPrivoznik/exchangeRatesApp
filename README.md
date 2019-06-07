@@ -3,8 +3,7 @@
 - Aplication is able to :
 
 ```
-          - zobrazení statických hodnot různých měn
-          - převedení vlastní hodnoty a měny na ostatní měny
-          - ze základu bude vybírat měnu pro danou lokaci podle GPS
-          - Graf nebo procenta změn za nějaký časový úsek
+          - Show static values of different *changes*
+          - Convert own *value* to another based on **selected changes**
+          - User can **change** his own **preferences** including default color or default change
 ```
