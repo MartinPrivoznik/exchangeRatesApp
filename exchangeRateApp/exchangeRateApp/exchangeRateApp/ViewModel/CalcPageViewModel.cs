@@ -14,13 +14,17 @@ namespace exchangeRateApp.ViewModel
 
         public Command Calculate { get; private set; }
 
-        public CalcPageViewModel()
+        public CalcPageViewModel() //Constructor
         {
             Calculate = new Command(Calculate_executeAsync);
 
             selected1 = Data.Instance.defaultChange; //Assigning default values to props
             selected2 = Data.Instance.defaultChange;
         }
+
+        //Methods
+
+        #region Command executions
 
         private async void Calculate_executeAsync(object obj)
         {
@@ -40,9 +44,12 @@ namespace exchangeRateApp.ViewModel
             });
         }
 
+        #endregion Command executions
+
 
         //MVVM Properties
 
+        #region Properties
         public string FinalValue //Calculated value
         {
             get { return finalValue; }
@@ -99,5 +106,7 @@ namespace exchangeRateApp.ViewModel
         {
             get { return Data.Instance.DefaultColor; }
         }
+
+        #endregion Properties
     }
 }

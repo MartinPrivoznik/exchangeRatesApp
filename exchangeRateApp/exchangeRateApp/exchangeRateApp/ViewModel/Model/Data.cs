@@ -35,6 +35,8 @@ namespace exchangeRateApp.ViewModel.Model
             selected2 = defaultChange;
         }
 
+        #region Protected data store
+
         private string json;
         private ExchangeRateInfo items;
         private Dictionary<string, double> convertedData;
@@ -49,6 +51,10 @@ namespace exchangeRateApp.ViewModel.Model
         protected string defaultColor;
         protected Change defaultchange;
         protected DateTime lastUpdated;
+
+        #endregion Protected data store
+
+        #region Setting needed data tasks
 
         public async Task PCLStorage()  //Loading Local Storage and asigning needed data
         {
@@ -120,23 +126,24 @@ namespace exchangeRateApp.ViewModel.Model
                     }
                 }
             });
-        } 
+        }
+        #endregion Setting needed data tasks
 
+        #region Change preferences methods
         public async void ChangeSettings(string change) //Methods to change default preferences in .txt files
         {
             await settingsFile.WriteAllTextAsync(change);
             settings = change;
         }
-                                                           
+                                                                 
         public async void ChangeDefaultColor(string color)  //  ^
         {                                                   // / \
             await defaultColorFile.WriteAllTextAsync(color);//  I
             defaultColor = color;                           //  I
         }
+        #endregion Change preferences methods
 
-
-        //GLOBAL VARIABLES
-
+        #region Global variables
 
         public DateTime LastUpdated
         {
@@ -185,7 +192,7 @@ namespace exchangeRateApp.ViewModel.Model
             get { return defaultColor; }
             set { defaultColor = value; }
         }
-        
 
+        #endregion Global variables
     }
 }

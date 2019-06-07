@@ -18,6 +18,8 @@ namespace exchangeRateApp.ViewModel
 
         //MVVM props
 
+        #region Properties
+
         public string LastChanged //Last time updated API datetime
         {
             get { return "Last updated : " + Data.Instance.LastUpdated.ToString(); }
@@ -70,5 +72,7 @@ namespace exchangeRateApp.ViewModel
             }
             set { Data.Instance.Changes = value; OnPropertyChanged("ChangeList2"); }
         }
+
+        #endregion Properties
     }
 }

@@ -14,7 +14,7 @@ namespace exchangeRateApp.ViewModel
             SelectedChange = Data.Instance.defaultChange;
         }
 
-        private string getDefaultColor()
+        private string getDefaultColor() //Setup page
         {
             switch(Data.Instance.DefaultColor) //Getting hex code of color and asigning as default to picker
             {
@@ -27,6 +27,8 @@ namespace exchangeRateApp.ViewModel
                 default: return "Blue";
             }
         }
+
+        #region Command executions
 
         private void changeColor_execute(string SelectedColor)
         {
@@ -46,7 +48,9 @@ namespace exchangeRateApp.ViewModel
             Data.Instance.ChangeSettings(change.Name);
         }
 
+        #endregion Command executions
 
+        #region Properties
 
         public string SelectedColor //Selected color
         {
@@ -80,5 +84,7 @@ namespace exchangeRateApp.ViewModel
                 OnPropertyChanged("ChangeList");
             }
         }
+
+        #endregion Properties
     }
 }
