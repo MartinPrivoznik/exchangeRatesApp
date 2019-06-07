@@ -1,8 +1,6 @@
 ﻿using exchangeRateApp.View;
 using exchangeRateApp.ViewModel.Model;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 //[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace exchangeRateApp
@@ -20,7 +18,7 @@ namespace exchangeRateApp
         protected override async void OnStart()
         {
             var data = Data.Instance;
-            await data.InitializeAsync();
+            await data.InitializeAsync(); 
             
             MainPage = new mainPage(); 
             

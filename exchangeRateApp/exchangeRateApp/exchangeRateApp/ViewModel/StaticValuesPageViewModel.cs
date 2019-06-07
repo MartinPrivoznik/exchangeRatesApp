@@ -1,10 +1,6 @@
 ﻿using exchangeRateApp.ViewModel.Model;
 using exchangeRateApp.ViewModel.Model.DataModel;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using Xamarin.Forms;
 
 namespace exchangeRateApp.ViewModel
 {

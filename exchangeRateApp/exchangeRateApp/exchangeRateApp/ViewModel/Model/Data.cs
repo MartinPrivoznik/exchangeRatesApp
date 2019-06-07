@@ -6,9 +6,7 @@ namespace exchangeRateApp.ViewModel.Model
     using DataModel;
     using Newtonsoft.Json;
     using PCLStorage;
-    using System.IO;
     using System.Net;
-    using System.Reflection;
     using System.Threading.Tasks;
 
     class Data
