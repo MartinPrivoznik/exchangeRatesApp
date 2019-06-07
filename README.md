@@ -32,7 +32,7 @@ API call and deserializion is using Newtonsoft framework
 
 #### DATA in Singleton instance
 
-- To overwrite preferences simply call *ChangeSettings(ownPreference)* or *ChangeDefaultColor(ownPreference) methods stored in Singleton instance
+- To overwrite preferences simply call *ChangeSettings(ownPreference)* or *ChangeDefaultColor(ownPreference)* methods stored in Singleton instance
 - Otherwise reference all data from *ViewModels* to Instance  
 
 ##### File reading or creating a new one
@@ -63,4 +63,9 @@ API call and deserializion is using Newtonsoft framework
         }
 ```
 
+### App view
 
+- App is based on **Tabbed page** which includes every single app *page* which are **Content pages**
+- I'm using simple style with preferenced colors 
+![Change values](./Images/ValuesScreen.png)
+Format: ![Alt Text](url)
