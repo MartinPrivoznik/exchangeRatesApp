@@ -14,6 +14,7 @@ namespace exchangeRateApp.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            //Converter which transfers change values from its USD value to the selected one
             string usdValue = (string)value;
             var param = parameter as Label;
 

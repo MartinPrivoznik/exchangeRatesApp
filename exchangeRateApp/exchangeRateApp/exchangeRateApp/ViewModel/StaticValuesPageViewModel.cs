@@ -19,6 +19,9 @@ namespace exchangeRateApp.ViewModel
             LastChanged = Data.Instance.LastUpdated.ToString();
         }
 
+
+        //MVVM props
+
         public string LastChanged //Last time updated API datetime
         {
             get { return "Last updated : " + Data.Instance.LastUpdated.ToString(); }

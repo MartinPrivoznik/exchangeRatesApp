@@ -97,7 +97,7 @@ namespace exchangeRateApp.ViewModel
             }
         }
 
-        public string Color //Color
+        public string Color //Preferenced color
         {
             get { return Data.Instance.DefaultColor; }
         }
