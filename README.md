@@ -8,7 +8,7 @@
           - User can change his own preferences including default color or default change 
 ```
 
-######App logic
+###### App logic
 
 - Application data usage is based in Singleton design pattern with async custom constructor which does following on app start : 
 
