@@ -4,7 +4,7 @@ using System.Text;
 
 namespace exchangeRateApp.ViewModel.Model.DataModel
 {
-    class ExchangeRateInfo
+    class ExchangeRateInfo //To deserialize data from API
     {
         public bool success { get; set; }
         public string terms { get; set; }

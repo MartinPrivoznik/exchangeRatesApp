@@ -19,13 +19,14 @@ namespace exchangeRateApp.ViewModel
         public CalcPageViewModel()
         {
             Calculate = new Command(Calculate_executeAsync);
-            selected1 = Data.Instance.defaultChange;
+
+            selected1 = Data.Instance.defaultChange; //Assigning default values to props
             selected2 = Data.Instance.defaultChange;
         }
 
         private async void Calculate_executeAsync(object obj)
         {
-            double newValue = await getNewValueAsync();
+            double newValue = await getNewValueAsync(); //Calculate button pressed
             FinalValue = newValue.ToString("F2");
             OnPropertyChanged("FinalValue");
         }
@@ -35,13 +36,16 @@ namespace exchangeRateApp.ViewModel
             return Task.Run(() =>
             {
                 double newValue;
-                newValue = EnteredValue / (double.Parse(Selected1.USDValue) / double.Parse(Selected2.USDValue));
+                newValue = EnteredValue / (double.Parse(Selected1.USDValue) / double.Parse(Selected2.USDValue)); //Algorhitm to parse default USD value to selected one and calculate
                 OnPropertyChanged("FinalValue");
                 return newValue;
             });
         }
 
-        public string FinalValue
+
+        //MVVM Properties
+
+        public string FinalValue //Calculated value
         {
             get { return finalValue; }
             set
@@ -51,7 +55,7 @@ namespace exchangeRateApp.ViewModel
             }
         }
 
-        public double EnteredValue
+        public double EnteredValue //Entered value to calculate
         {
             get { return Data.Instance.EnteredValue; }
             set
@@ -62,7 +66,7 @@ namespace exchangeRateApp.ViewModel
             }
         }
 
-        public List<Change> ChangeList
+        public List<Change> ChangeList //List of changes
         {
             get
             {
@@ -71,7 +75,7 @@ namespace exchangeRateApp.ViewModel
             set { Data.Instance.Changes = value; OnPropertyChanged("ChangeList"); }
         }
 
-        public Change Selected1
+        public Change Selected1 //From
         {
             get { return selected1; }
             set
@@ -82,7 +86,7 @@ namespace exchangeRateApp.ViewModel
             }
         }
 
-        public Change Selected2
+        public Change Selected2 //To
         {
             get { return selected2; }
             set
@@ -93,15 +97,9 @@ namespace exchangeRateApp.ViewModel
             }
         }
 
-        public string Color
+        public string Color //Color
         {
             get { return Data.Instance.DefaultColor; }
         }
-
-        //public string Text
-        //{
-        //    get { return Data.Instance.Folder; }
-        //    set { Data.Instance.Folder = value; OnPropertyChanged("Text"); }
-        //}
     }
 }

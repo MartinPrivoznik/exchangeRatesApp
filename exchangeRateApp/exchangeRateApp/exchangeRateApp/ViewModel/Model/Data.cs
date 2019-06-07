@@ -136,14 +136,15 @@ namespace exchangeRateApp.ViewModel.Model
             defaultColor = color;                           //  I
         }
 
+
+        //GLOBAL VARIABLES
+
+
         public DateTime LastUpdated
         {
             get { return lastUpdated; }
             set { lastUpdated = value; }
         }
-
-
-        //GLOBAL VARIABLES
 
         public List<Change> Changes
         {

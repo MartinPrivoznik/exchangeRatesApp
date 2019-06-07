@@ -20,7 +20,7 @@ namespace exchangeRateApp.ViewModel.Model.DataModel
             set { name = value; OnPropertyChanged("Name"); }
         }
 
-        public string USDValue
+        public string USDValue   //In default changes are in USD value
         {
             get { return usdValue.ToString("F2"); }
             set { usdValue = double.Parse(value); OnPropertyChanged("Value"); }
