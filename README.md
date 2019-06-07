@@ -67,5 +67,4 @@ API call and deserializion is using Newtonsoft framework
 
 - App is based on **Tabbed page** which includes every single app *page* which are **Content pages**
 - I'm using simple style with preferenced colors 
-![Change values](./Images/ValuesScreen.png)
-Format: ![Alt Text](url)
+<img src="Images/ValuesScreen.png" width = "350" /> <img src="Images/CalcScreen.png" width = "350" />
