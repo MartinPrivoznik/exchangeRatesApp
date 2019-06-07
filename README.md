@@ -24,7 +24,7 @@
 
 API call and deserializion is using Newtonsoft framework 
 
-```ruby
+```csharp
           using Newtonsoft.Json;
           Whole_API_string = new WebClient().DownloadString("API url");
           converted_Item = JsonConvert.DeserializeObject<APIObjects>(Whole_API_string);
@@ -40,7 +40,7 @@ API call and deserializion is using Newtonsoft framework
 - PCLStorage nugget allows me to read or create a new files in local storage by using *CreateFileAsync("settings.txt",CreationCollisionOption.OpenIfExists)* method
 - In my code I use it to load default color of app and default change, which will be displayed :
 
-```ruby
+```csharp
         public async Task PCLStorage()  //Loading Local Storage and asigning needed data
         {
             localFolder = FileSystem.Current.LocalStorage;
