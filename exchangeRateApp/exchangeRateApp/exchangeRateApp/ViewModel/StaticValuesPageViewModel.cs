@@ -11,19 +11,21 @@ namespace exchangeRateApp.ViewModel
     class StaticValuesPageViewModel : Abstract.viewModel
     {
         protected string lastChanged;
+
+        //Constructor
         public StaticValuesPageViewModel()
         {
-            Selected = Data.Instance.defaultChange;
+            Selected = Data.Instance.defaultChange;  //Asigning default values to PROPS
             LastChanged = Data.Instance.LastUpdated.ToString();
         }
 
-        public string LastChanged
+        public string LastChanged //Last time updated API datetime
         {
             get { return "Last updated : " + Data.Instance.LastUpdated.ToString(); }
             set { lastChanged = value; OnPropertyChanged("LastChanged"); }
         }
 
-        public Change Selected
+        public Change Selected  //Default selected value depending on preferences
         {
             get { return Data.Instance.Selected; }
             set { Data.Instance.Selected = value;
@@ -33,7 +35,7 @@ namespace exchangeRateApp.ViewModel
             }
         }
 
-        public List<Change> ChangeList
+        public List<Change> ChangeList // List of changes from API
         {
             get
             {
@@ -42,7 +44,7 @@ namespace exchangeRateApp.ViewModel
             set { Data.Instance.Changes = value; OnPropertyChanged("ChangeList"); }
         }
 
-        public List<Change> ChangeList1
+        public List<Change> ChangeList1  //List of changes cutted to half because of view
         {
             get
             {
@@ -56,7 +58,7 @@ namespace exchangeRateApp.ViewModel
             set { Data.Instance.Changes = value; OnPropertyChanged("ChangeList1"); }
         }
 
-        public List<Change> ChangeList2
+        public List<Change> ChangeList2 //List of changes cutted to half because of view
         {
             get
             {
