@@ -1,6 +1,7 @@
 # ExchangeRatesApp
 
 - School project in **Xamarin Forms** using Visual studio 2019
+- Application was tested on **Android version 4.4 (Kitkat)** but works either for latest versions of Android or even for IOS 
 - Application is able to :
 
 ```
@@ -66,5 +67,7 @@ API call and deserializion is using Newtonsoft framework
 ### App view
 
 - App is based on **Tabbed page** which includes every single app *page* which are **Content pages**
-- I'm using simple style with preferenced colors 
-<img src="Images/ValuesScreen.png" width = "350" /> <img src="Images/CalcScreen.png" width = "350" />
+- I'm using simple style with preferenced colors <br/>
+<img src="Images/ValuesScreen.png" width = "250" />   <img src="Images/CalcScreen.png" width = "250" /> <br/>
+
+©Martin Přívozník - SPŠSE a VOŠ Liberec 
