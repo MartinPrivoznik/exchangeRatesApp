@@ -14,19 +14,26 @@ namespace exchangeRateApp.ViewModel.Model
     class Data
     {
         public static Data Instance = new Data();
+        //Singleton usage (Object instances itself)
 
-        public async Task InitializeAsync()
+        //Async inicialization of singleton called from App.cs on app start
+        public async Task InitializeAsync() 
         {
             json = new WebClient().DownloadString("http://www.apilayer.net/api/live?access_key=eed50627c9da077136be224e011a7f95&format=1"); //Loading API
-            items = JsonConvert.DeserializeObject<ExchangeRateInfo>(json); //Deserializing API
+            items = JsonConvert.DeserializeObject<ExchangeRateInfo>(json); //Reading API
+
             changes = new List<Change>();
-            convertedData = new Dictionary<string, double>();
+
+            convertedData = new Dictionary<string, double>();   //Saving needed data to collections
             convertedData = await getRateValuesAsync();
             changes = await getChangesAsync();
+
             await PCLStorage();  //Loading Local Storage
-            await getDefaultChangeAsync();
+
+            await getDefaultChangeAsync();   //Reading data from Local Storage
             lastUpdated = await getLastUpdatedAsync();
-            selected = defaultChange;
+
+            selected = defaultChange; //Asigning read data to variables
             selected2 = defaultChange;
         }
 
@@ -45,7 +52,7 @@ namespace exchangeRateApp.ViewModel.Model
         protected Change defaultchange;
         protected DateTime lastUpdated;
 
-        public async Task PCLStorage()
+        public async Task PCLStorage()  //Loading Local Storage and asigning needed data
         {
             localFolder = FileSystem.Current.LocalStorage;
             settingsFile = await localFolder.CreateFileAsync("settings.txt",
@@ -66,7 +73,7 @@ namespace exchangeRateApp.ViewModel.Model
             }
         }
 
-        private Task<DateTime> getLastUpdatedAsync()
+        private Task<DateTime> getLastUpdatedAsync()   //Getting and deserializing JavaTimeStamp data from API and transfering them to needed time
         {
             return Task.Run(() =>
             {
@@ -98,7 +105,7 @@ namespace exchangeRateApp.ViewModel.Model
             {
                 changess.Add(new Change(item.Key.Substring(3,3), item.Value));
                 }
-                System.Threading.Thread.Sleep(3000);
+                System.Threading.Thread.Sleep(1500); //Waiting to initialize correctly
                 return changess;
             });
         }
@@ -117,16 +124,16 @@ namespace exchangeRateApp.ViewModel.Model
             });
         } 
 
-        public async void ChangeSettings(string change)
+        public async void ChangeSettings(string change) //Methods to change default preferences in .txt files
         {
             await settingsFile.WriteAllTextAsync(change);
             settings = change;
         }
-
-        public async void ChangeDefaultColor(string color)
-        {
-            await defaultColorFile.WriteAllTextAsync(color);
-            defaultColor = color;
+                                                           
+        public async void ChangeDefaultColor(string color)  //  ^
+        {                                                   // / \
+            await defaultColorFile.WriteAllTextAsync(color);//  I
+            defaultColor = color;                           //  I
         }
 
         public DateTime LastUpdated
@@ -134,6 +141,9 @@ namespace exchangeRateApp.ViewModel.Model
             get { return lastUpdated; }
             set { lastUpdated = value; }
         }
+
+
+        //GLOBAL VARIABLES
 
         public List<Change> Changes
         {

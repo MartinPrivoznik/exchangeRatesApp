@@ -21,11 +21,11 @@ namespace exchangeRateApp.ViewModel
         {
             switch(Data.Instance.DefaultColor)
             {
-                case "14b0ff": return "Blue";
+                case "#14b0ff": return "Blue";
                 case "#32d15c": return "Green";
-                case "ea1e40": return "Red";
+                case "#ea1e40": return "Red";
                 case "#8b09b7": return "Purple";
-                case "db0d93": return "Pink";
+                case "#db0d93": return "Pink";
                 case "#dce011": return "Yellow";
                 default: return "Blue";
             }
@@ -48,6 +48,8 @@ namespace exchangeRateApp.ViewModel
         {
             Data.Instance.ChangeSettings(change.Name);
         }
+
+
 
         public string SelectedColor
         {
