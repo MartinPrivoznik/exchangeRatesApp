@@ -12,7 +12,7 @@
 
 ### App logic
 
-- Application is based on **MVVM pattern** for more understanding of program
+- Application is designed using **MVVM pattern** for more understanding of program
 - User needs to be **connected to the internet** to correctly read the *json API* and run the application
 - Application data usage is based in **Singleton design pattern** with *async custom constructor* which does following on app start : 
 
